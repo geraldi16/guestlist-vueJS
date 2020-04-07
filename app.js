@@ -7,5 +7,12 @@ new Vue({
             eventDescription: 'It\'s back! This years summer festival will be in the beautiful countryside featuring our best line up ever!',
         },
         newEventName: '',
+        guestName: [],
     },
+    methods: {
+        formSubmitted: function() {
+            this.guestName.push(this.newEventName)
+            this.newEventName = ''
+        }
+    }
 })
