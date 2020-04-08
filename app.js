@@ -14,14 +14,21 @@ new Vue({
             margin: '10px',
             color: 'blue'
         },
+        eventCapacity: 10,
+        eventCapacityPercentage: 0,
+        maximumPercentage: 100
     },
     methods: {
         formSubmitted: function() {
-            if (this.newEventName.length === 0) return
+            if (this.newEventName.length === 0 || this.guestName.length >= this.eventCapacity) return
 
             this.guestName.push(this.newEventName)
             this.newEventName = ''
             this.formSubmitClass = 'submitted'
+            this.eventCapacityPercentage = this.countCapacityPercentage()
+        },
+        countCapacityPercentage: function() {
+            return Math.round((this.guestName.length / this.eventCapacity) * 100)
         }
     }
 })
